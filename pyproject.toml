@@ -55,6 +55,7 @@ dependencies = [
     # 유틸리티
     "loguru>=0.7.0",
     "tqdm>=4.66.0",
+    "pyyaml>=6.0",
 ]
 
 [project.optional-dependencies]

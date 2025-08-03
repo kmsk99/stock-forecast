@@ -1,0 +1,93 @@
+# 다중 포트폴리오 비교 분석 설정
+# 여러 포트폴리오를 한 번에 분석하고 비교
+
+global_settings:
+  output_dir: "reports"
+  start_date: "2022-01-01" 
+  end_date: "2024-12-31"
+  transaction_cost: 0.001
+
+portfolios:
+
+  # 1. 보수적 포트폴리오
+  conservative:
+    name: "Conservative Portfolio"
+    description: "안정성 중심 포트폴리오"
+    
+    assets:
+      VOO: 0.50   # S&P 500 (50%)
+      TLT: 0.30   # 장기 국채 (30%)
+      GLD: 0.20   # 금 (20%)
+    
+    strategies: ["vol_parity"]  # 변동성 패리티만
+    rebalance_periods: ["6M", "1Y"]  # 느린 리밸런싱
+
+  # 2. 균형 포트폴리오  
+  balanced:
+    name: "Balanced Portfolio"
+    description: "균형잡힌 분산 포트폴리오"
+    
+    assets:
+      QQQ: 0.25   # 나스닥 (25%)
+      VOO: 0.25   # S&P 500 (25%)
+      TLT: 0.25   # 국채 (25%)
+      GLD: 0.25   # 금 (25%)
+    
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["3M", "6M"]
+
+  # 3. 공격적 포트폴리오
+  aggressive:
+    name: "Aggressive Portfolio" 
+    description: "고성장 공격적 포트폴리오"
+    
+    assets:
+      QQQ: 0.40   # 나스닥 (40%)
+      ARKK: 0.30  # ARK 이노베이션 (30%)
+      BITO: 0.30  # 비트코인 (30%)
+    
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["1M", "3M"]  # 빠른 리밸런싱
+
+  # 4. 개별주식 포트폴리오 (예시)
+  # tech_stocks:
+  #   name: "Big Tech Stocks"
+  #   description: "대형 기술주 포트폴리오"
+  #   
+  #   assets:
+  #     AAPL: 0.25   # 애플
+  #     MSFT: 0.25   # 마이크로소프트
+  #     GOOGL: 0.25  # 구글
+  #     NVDA: 0.25   # 엔비디아
+  #   
+  #   strategies: ["equal_weight", "vol_parity"]
+  #   rebalance_periods: ["1M", "3M", "6M"]
+
+# 배치 분석 설정
+batch_analysis:
+  enabled: true
+  target_portfolios: ["conservative", "balanced", "aggressive"]  # 분석할 포트폴리오 지정
+  
+  comparison:
+    enabled: true
+    base_strategy: "equal_weight"
+    base_period: "3M"
+    
+  reports:
+    generate_individual: true    # 개별 리포트 생성
+    generate_comparison: true    # 비교 리포트 생성
+    include_charts: true         # 차트 포함
+    korean_language: true        # 한국어 설명
+
+# 고급 설정
+advanced:
+  key_metrics:
+    - "cagr"
+    - "sharpe_ratio"
+    - "max_drawdown"
+    - "volatility"
+    - "win_rate"
+    
+  benchmark:
+    enabled: true
+    ticker: "QQQ"

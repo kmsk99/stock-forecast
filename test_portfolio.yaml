@@ -1,0 +1,32 @@
+# 간단한 포트폴리오 분석 설정
+
+global_settings:
+  output_dir: "reports"
+  start_date: "2022-01-01"
+  end_date: "2024-12-31"
+  transaction_cost: 0.001
+  initial_capital: 100000  # $100,000 초기 자본
+
+portfolios:
+  my_portfolio:
+    name: "My Portfolio"
+    description: "내 포트폴리오 ($100K 시뮬레이션)"
+    
+    assets:
+      QQQ: 0.40    # 나스닥 100 (40%)
+      VOO: 0.30    # S&P 500 (30%)
+      GLD: 0.30    # 금 ETF (30%)
+    
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["3M", "6M"]
+    
+    # 포트폴리오별 설정
+    initial_capital: 100000  # $100,000
+
+batch_analysis:
+  enabled: true
+  comparison:
+    enabled: false
+  reports:
+    generate_individual: true
+    include_charts: true

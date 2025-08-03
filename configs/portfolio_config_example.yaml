@@ -1,0 +1,144 @@
+# 포트폴리오 분석 설정 파일
+# 이 파일을 복사해서 원하는 설정으로 수정하세요
+
+# 전역 설정
+global_settings:
+  data_path: "data/silver/features.parquet"  # 피처 데이터 경로
+  output_dir: "reports"                      # 결과 저장 디렉토리
+  start_date: "2022-01-01"                   # 분석 시작일
+  end_date: "2024-12-31"                     # 분석 종료일
+  
+  # 거래비용 설정
+  transaction_cost: 0.001  # 0.1% 거래비용
+  
+  # 기본 분석 설정
+  default_strategies: ["equal_weight", "vol_parity"]
+  default_rebalance_periods: ["1M", "3M", "6M"]
+
+# 포트폴리오 설정 (여러 개 정의 가능)
+portfolios:
+  
+  # ETF 4 Core 포트폴리오
+  etf_4core:
+    name: "ETF 4 Core Portfolio"
+    description: "기술주 + 대형주 + 비트코인 + 금"
+    
+    # 종목과 비중
+    assets:
+      QQQ: 0.30    # NASDAQ-100 ETF (30%)
+      VOO: 0.30    # S&P 500 ETF (30%)
+      BITO: 0.20   # Bitcoin ETF (20%)
+      GLD: 0.20    # Gold ETF (20%)
+    
+    # 분석할 전략들
+    strategies: ["equal_weight", "vol_parity"]
+    
+    # 리밸런싱 주기들 (배열로 여러 개 테스트)
+    rebalance_periods: ["1M", "3M", "6M", "1Y"]
+    
+    # 개별 설정 (옵션)
+    custom_settings:
+      vol_window: 20  # 변동성 계산 윈도우
+      
+  # 클래식 60/40 포트폴리오  
+  classic_6040:
+    name: "Classic 60/40 Portfolio"
+    description: "전통적인 주식 60% + 채권 40%"
+    
+    assets:
+      VOO: 0.60    # S&P 500 ETF (60%)
+      TLT: 0.40    # 장기 국채 ETF (40%)
+    
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["3M", "6M", "1Y"]
+    
+  # 공격적 성장 포트폴리오
+  aggressive_growth:
+    name: "Aggressive Growth Portfolio"
+    description: "고성장 기술주 중심"
+    
+    assets:
+      QQQ: 0.40     # NASDAQ-100
+      ARKK: 0.30    # ARK Innovation ETF
+      BITO: 0.20    # Bitcoin ETF
+      TQQQ: 0.10    # 3x 레버리지 NASDAQ
+    
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["1M", "3M"]  # 공격적이니까 자주 리밸런싱
+    
+    custom_settings:
+      vol_window: 10  # 짧은 변동성 윈도우
+      
+  # 방어적 포트폴리오
+  defensive:
+    name: "Defensive Portfolio" 
+    description: "안정성 중심의 방어적 포트폴리오"
+    
+    assets:
+      VOO: 0.40    # S&P 500
+      TLT: 0.30    # 장기 국채
+      GLD: 0.20    # 금
+      VNQ: 0.10    # 리츠
+    
+    strategies: ["vol_parity"]  # 변동성 패리티만
+    rebalance_periods: ["6M", "1Y"]  # 방어적이니까 덜 자주
+    
+  # 개별 주식 포트폴리오
+  tech_stocks:
+    name: "Tech Stocks Portfolio"
+    description: "대형 기술주 포트폴리오"
+    
+    assets:
+      AAPL: 0.25   # Apple
+      MSFT: 0.25   # Microsoft  
+      GOOGL: 0.25  # Google
+      NVDA: 0.25   # NVIDIA
+      
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["1M", "3M", "6M"]
+
+# 배치 분석 설정
+batch_analysis:
+  enabled: true  # 여러 포트폴리오 동시 실행
+  
+  # 실행할 포트폴리오 목록 (빈 리스트면 모든 포트폴리오)
+  target_portfolios: []  # 예: ["etf_4core", "classic_6040"] 또는 [] (전체)
+  
+  # 비교 분석 설정
+  comparison:
+    enabled: true
+    base_strategy: "equal_weight"
+    base_period: "3M"
+    
+  # 리포트 설정
+  reports:
+    generate_individual: true    # 개별 포트폴리오 리포트
+    generate_comparison: true    # 비교 리포트
+    include_charts: true         # 차트 포함
+    korean_language: true        # 한국어 설명
+
+# 고급 설정
+advanced:
+  # 성과 지표 필터링
+  key_metrics:
+    - "cagr"
+    - "sharpe_ratio" 
+    - "max_drawdown"
+    - "volatility"
+    - "win_rate"
+  
+  # 벤치마크 설정
+  benchmark:
+    enabled: true
+    ticker: "QQQ"  # 벤치마크 종목
+    
+  # 차트 설정
+  charts:
+    style: "seaborn-v0_8-whitegrid"
+    figsize: [20, 16]
+    dpi: 300
+    
+  # 통계 설정
+  statistics:
+    confidence_level: 0.95  # VaR 신뢰도
+    risk_free_rate: 0.02    # 무위험 수익률

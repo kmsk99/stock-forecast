@@ -1,0 +1,40 @@
+# 내 포트폴리오 분석 설정
+# 이 파일을 수정해서 사용하세요!
+
+global_settings:
+  output_dir: "reports"
+  start_date: "2022-01-01"
+  end_date: "2024-12-31"
+  transaction_cost: 0.001  # 0.1% 거래비용
+
+portfolios:
+  
+  # ETF 포트폴리오 (QQQ, VOO, BITO, GLD)
+  my_etf_portfolio:
+    name: "My ETF Portfolio"
+    description: "기술주 + 대형주 + 비트코인 + 금"
+    
+    assets:
+      QQQ: 0.30   # 나스닥 100 (30%)
+      VOO: 0.30   # S&P 500 (30%)
+      BITO: 0.20  # 비트코인 ETF (20%)
+      GLD: 0.20   # 금 ETF (20%)
+    
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["1M", "3M", "6M"]  # 월간, 분기, 반기 리밸런싱 테스트
+
+# 배치 분석 설정
+batch_analysis:
+  enabled: true
+  target_portfolios: []  # 빈 리스트 = 모든 포트폴리오 분석
+  
+  comparison:
+    enabled: true
+    base_strategy: "equal_weight"
+    base_period: "3M"
+    
+  reports:
+    generate_individual: true
+    generate_comparison: true
+    include_charts: true
+    korean_language: true

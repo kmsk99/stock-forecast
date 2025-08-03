@@ -1,0 +1,39 @@
+# 다중 포트폴리오 비교 분석
+
+global_settings:
+  output_dir: "reports"
+  start_date: "2022-01-01"
+  end_date: "2024-12-31"
+  transaction_cost: 0.001
+
+portfolios:
+  conservative:
+    name: "Conservative Portfolio"
+    description: "보수적 포트폴리오"
+    assets:
+      VOO: 0.70    # S&P 500 (70%)
+      GLD: 0.30    # Gold (30%)
+    strategies: ["vol_parity"]
+    rebalance_periods: ["6M", "1Y"]
+
+  aggressive:
+    name: "Aggressive Portfolio"
+    description: "공격적 포트폴리오"
+    assets:
+      QQQ: 0.40    # NASDAQ (40%)
+      BITO: 0.30   # Bitcoin (30%)
+      AAPL: 0.20   # Apple (20%)
+      MSFT: 0.10   # Microsoft (10%)
+    strategies: ["equal_weight", "vol_parity"]
+    rebalance_periods: ["1M", "3M"]
+
+batch_analysis:
+  enabled: true
+  comparison:
+    enabled: true
+    base_strategy: "equal_weight"
+    base_period: "3M"
+  reports:
+    generate_individual: true
+    generate_comparison: true
+    include_charts: true
