@@ -1,0 +1,131 @@
+# Stock Forecast Lab - 개발 의존성
+# 이 파일은 개발, 테스트, 린팅을 위한 패키지들을 포함합니다.
+
+# 테스트 프레임워크
+pytest>=7.4.0
+pytest-cov>=4.1.0          # 테스트 커버리지
+pytest-xdist>=3.3.0        # 병렬 테스트 실행
+pytest-mock>=3.11.0        # 목킹 지원
+pytest-benchmark>=4.0.0    # 성능 벤치마킹
+
+# 코드 품질 도구
+black>=23.0.0               # 코드 포매터
+ruff>=0.1.0                 # 빠른 린터 (flake8, isort 대체)  
+mypy>=1.5.0                 # 정적 타입 검사
+bandit>=1.7.5               # 보안 검사
+
+# 사전 커밋 훅
+pre-commit>=3.4.0           # Git 훅 관리
+
+# 문서화 도구
+sphinx>=7.1.0               # 문서 생성
+sphinx-rtd-theme>=1.3.0     # ReadTheDocs 테마
+myst-parser>=2.0.0          # Markdown 지원
+
+# Jupyter 관련
+jupyter>=1.0.0              # Jupyter 노트북
+jupyterlab>=4.0.0           # JupyterLab
+ipykernel>=6.25.0           # IPython 커널
+ipywidgets>=8.1.0           # 인터랙티브 위젯
+nbformat>=5.9.0             # 노트북 포맷 도구
+nbconvert>=7.8.0            # 노트북 변환 도구
+
+# 개발 유틸리티
+ipython>=8.15.0             # 향상된 Python REPL
+rich>=13.0.0                # 터미널 출력 개선
+click>=8.1.0                # CLI 구축 도구 (typer의 의존성)
+
+# 프로파일링 및 디버깅
+line-profiler>=4.1.0        # 라인별 성능 프로파일링
+memory-profiler>=0.61.0     # 메모리 사용량 프로파일링
+py-spy>=0.3.14              # 프로덕션 프로파일러
+
+# 타입 힌트용 확장
+types-requests>=2.31.0      # requests 타입 힌트
+types-python-dateutil>=2.8.0  # dateutil 타입 힌트
+pandas-stubs>=2.0.0         # pandas 타입 힌트
+
+# 추가 테스트 도구
+faker>=19.0.0               # 가짜 데이터 생성
+factory-boy>=3.3.0          # 테스트 객체 팩토리
+freezegun>=1.2.0            # 시간 목킹
+responses>=0.23.0           # HTTP 요청 목킹
+
+# 성능 테스트
+locust>=2.17.0              # 부하 테스트 도구
+
+# 환경 관리
+python-dotenv>=1.0.0        # .env 파일 지원 (이미 main에 있지만 명시)
+
+# 보안 및 라이센스 검사
+safety>=2.3.0               # 보안 취약점 검사
+pip-licenses>=4.3.0         # 라이센스 정보 확인
+
+# 코드 복잡도 분석
+radon>=6.0.1                # 코드 복잡도 측정
+xenon>=0.9.0                # 복잡도 임계값 검사
+
+# 의존성 분석
+pipdeptree>=2.13.0          # 패키지 의존성 트리 시각화
+
+# Git 관련 도구
+gitpython>=3.1.0            # Git 조작 라이브러리
+
+# 추가 데이터 검증 도구
+great-expectations>=0.17.0  # 데이터 품질 검증
+pandera>=0.17.0             # pandas 데이터 검증
+
+# 시각화 개발 도구 (메인 패키지에 없는 경우)
+plotly>=5.17.0              # 인터랙티브 차트
+dash>=2.14.0                # 웹 대시보드
+dash-bootstrap-components>=1.5.0  # Bootstrap 컴포넌트
+
+# 노트북 확장
+nbextensions>=0.0.1         # Jupyter 확장
+jupyter-contrib-nbextensions>=0.7.0  # 커뮤니티 확장
+
+# 프로젝트 관리
+cookiecutter>=2.3.0         # 프로젝트 템플릿 도구
+
+# 추가 유틸리티
+tqdm>=4.66.0                # 진행률 표시 (메인에도 있지만 명시)
+
+# 병렬 처리 및 최적화
+joblib>=1.3.0               # 병렬 처리 유틸리티
+numba>=0.58.0               # JIT 컴파일러
+
+# 데이터베이스 개발 도구 (선택사항)
+alembic>=1.12.0             # 데이터베이스 마이그레이션
+sqlalchemy>=2.0.0           # ORM
+
+# API 개발 도구 (향후 확장용)
+fastapi>=0.103.0            # 웹 API 프레임워크  
+uvicorn>=0.23.0             # ASGI 서버
+
+# 컨테이너 개발
+docker>=6.1.0               # Docker Python SDK
+
+# 클라우드 개발 (선택사항)
+boto3>=1.28.0               # AWS SDK
+google-cloud-storage>=2.10.0  # Google Cloud Storage
+
+# 추가 금융 라이브러리
+yfinance>=0.2.0             # Yahoo Finance (메인에도 있음)
+alpha-vantage>=2.3.0        # Alpha Vantage API
+quandl>=3.7.0               # Quandl 데이터
+
+# 추가 ML 라이브러리 (선택사항)
+scikit-learn>=1.3.0         # 머신러닝
+optuna>=3.4.0               # 하이퍼파라미터 최적화
+mlflow>=2.6.0               # ML 실험 추적
+
+# 추가 백테스트 라이브러리
+bt>=0.2.9                   # 백테스트 프레임워크
+zipline-reloaded>=3.0.0     # Zipline 백테스트 (Python 3.11 호환 버전)
+
+# 리스크 관리
+riskfolio-lib>=4.3.0        # 포트폴리오 최적화 및 리스크 관리
+
+# 시계열 분석
+statsmodels>=0.14.0         # 통계 모델
+arch>=6.2.0                 # GARCH 모델
